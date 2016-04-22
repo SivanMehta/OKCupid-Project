@@ -7,3 +7,7 @@
 *  At least 4 of the graphics (5 if you have 5 group members) should be interactive in some way.  For example, you could allow the user to specify which variables to include on the x- or y-axis; which variables to color by; which variables to use in faceting; etc.
 *  At least 6 of your graphics (7 if you have 5 group members) should contain two or more variables.
 *  You are **strongly encouraged** to try new graphics that we didn't cover in class!
+
+# Right Now
+
+This project only contains the "answers" to Lab 13, I just put them here so my teammates can get them
