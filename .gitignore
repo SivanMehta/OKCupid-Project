@@ -2,3 +2,5 @@
 .Rhistory
 .RData
 *.html
+profiles.csv
+.DS_Store

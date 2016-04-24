@@ -1,0 +1,30 @@
+## 1. Import the dataset and load it how I want
+
+```{r, cache = T}
+profile <- read.csv("profiles.csv")
+
+wanted_profiles <- profile[which(profile$sign == "leo" |
+              profile$sign == "aquarius" | 
+              profile$sign == "gemini"), ]
+```
+
+
+## 2. Try some multidimensional scaling on the essay questions, and color each group
+
+```{r, message=FALSE, warning=FALSE}
+library(tm)
+essay_questions <- paste("essay", 0:9, sep="")
+profiles_just_essays <- wanted_profiles[essay_questions]
+
+dtm <- DocumentTermMatrix(profiles_just_essays, 
+                          control = list(weighting = weightTfIdf, 
+                                              stopwords = TRUE))
+
+n_mds <- 2
+dtm2 <- as.data.frame((as.matrix(dtm)))
+dtm_mds <- as.data.frame(cmdscale(dist(dtm2), n_mds))
+names(dtm_mds) <- paste0("mds", 1:n_mds)
+dtm_mds$index <- 1:nrow(dtm_mds)
+
+```
+
