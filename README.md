@@ -8,6 +8,5 @@
 *  At least 6 of your graphics (7 if you have 5 group members) should contain two or more variables.
 *  You are **strongly encouraged** to try new graphics that we didn't cover in class!
 
-# Right Now
-
-This project only contains the "answers" to Lab 13, I just put them here so my teammates can get them
+# Our group
+We are looking at the difference between the astrological signs Aquarius, gemini, and leo.
