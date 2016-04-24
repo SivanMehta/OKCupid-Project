@@ -13,10 +13,11 @@ wanted_profiles <- profile[which(profile$sign == "leo" |
 
 ```{r, message=FALSE, warning=FALSE}
 library(tm)
+library(ggplot2)
 essay_questions <- paste("essay", 0:9, sep="")
 profiles_just_essays <- wanted_profiles[essay_questions]
 
-dtm <- DocumentTermMatrix(profiles_just_essays, 
+dtm <- DocumentTermMatrix(as.matrix(profiles_just_essays), 
                           control = list(weighting = weightTfIdf, 
                                               stopwords = TRUE))
 
@@ -26,5 +27,6 @@ dtm_mds <- as.data.frame(cmdscale(dist(dtm2), n_mds))
 names(dtm_mds) <- paste0("mds", 1:n_mds)
 dtm_mds$index <- 1:nrow(dtm_mds)
 
+ggplot(dtm_mds, aes(mds1, mds2)) + geom_text(aes(label = index))
 ```
 
