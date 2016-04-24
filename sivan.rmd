@@ -4,6 +4,8 @@
 profiles <- read.csv("profiles.csv")
 
 # get rid of degree of caring
+# from:
+# http://stackoverflow.com/questions/7748149/apply-strsplit-to-specific-column-in-a-data-frame
 profiles$sign <- sub("\\ .+$", "", profiles$sign)
 
 wanted_profiles <- profiles[which(profile$sign == "leo" |
