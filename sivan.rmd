@@ -30,18 +30,35 @@ ggplot(wanted_profiles) +
 
 ## 3. Sentiment Analysis
 
-```{r, warning=FALSE, message = FALSE, cache=TRUE, fig.width = 12}
+```{r, warning=FALSE, message = FALSE, fig.width = 12}
 library(qdap)
+library(plotly)
 
 # take random sample because it takes ~5 minutes to analyze the polarity
 # of a dataset this size
 sample <- wanted_profiles[sample(nrow(wanted_profiles), 1000), ]
-
 sample$polarity <- polarity(sample$essay0)$all$polarity
 
-ggplot(sample) +
-    aes(x = polarity, colour = sign) +
-    geom_density() + 
-    ggtitle("Sentiment of Essay #1, depending on sign")
+ggplot(subset(sample, income < 250000)) +
+    geom_point(aes(x = age, y = income, colour = polarity)) + 
+    scale_colour_gradientn(colours=c("#FF0000", "#ffffff", "#440088","#0000FF")) + 
+    ggtitle("Income vs. Age, colored by Sentiment")
+
+ggplotly()
+```
+
+This seems to suggest that polarity increases according to age because there are more blue points on the right side of the graph, this can be **very** loosely corroborated by the following scatter plot of polarity vs. age. As you can see by the coloring, there is no real correlation between sign and either of these variables.
+
+```{r, fig.width = 12, warning=FALSE}
+
+correlation <- cor(sample$age, sample$polarity, use = "na.or.complete")
+
+mytext <- paste("Age vs. Polarity with", "r = ", correlation, ", colored by sign")
+
+ggplot(sample) + 
+    aes(x = age, y = polarity) + 
+    geom_point(aes(colour = sign)) + 
+    geom_smooth(method = "lm") + 
+    ggtitle(mytext)
 ```
 
