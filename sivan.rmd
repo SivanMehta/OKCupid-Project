@@ -7,7 +7,6 @@ profiles <- read.csv("profiles.csv")
 # from:
 # http://stackoverflow.com/questions/7748149/apply-strsplit-to-specific-column-in-a-data-frame
 profiles$sign <- sub("\\ .+$", "", profiles$sign)
-sub("* ", "", profiles$sign, fixed = FALSE)
 
 wanted_profiles <- profiles[which(profiles$sign == "leo" |
               profiles$sign == "aquarius" | 
@@ -31,9 +30,11 @@ ggplot(wanted_profiles) +
 
 ## 3. Sentiment Analysis
 
-```{r, warning=FALSE, message = FALSE, cache=TRUE}
+```{r, warning=FALSE, message = FALSE, cache=TRUE, fig.width = 12}
 library(qdap)
 
+# take random sample because it takes ~5 minutes to analyze the polarity
+# of a dataset this size
 sample <- wanted_profiles[sample(nrow(wanted_profiles), 1000), ]
 
 sample$polarity <- polarity(sample$essay0)$all$polarity

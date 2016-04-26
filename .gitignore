@@ -4,3 +4,5 @@
 *.html
 profiles.csv
 .DS_Store
+*_cache/
+*_files/
