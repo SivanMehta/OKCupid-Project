@@ -23,8 +23,11 @@ library(plotly)
 sample <- wanted_profiles[sample(nrow(wanted_profiles), 1000), ]
 sample$polarity <- polarity(sample$essay0)$all$polarity
 
+## get word counts
+sample$wc <-  sapply(strsplit(as.character(sample$essay0), " "), length)
+
 ggplot(subset(sample, income < 250000)) +
-    geom_point(aes(x = age, y = income, colour = polarity)) + 
+    geom_point(aes(x = polarity, y = wc)) + 
     scale_colour_gradientn(colours=c("#FF0000", "#ffffff", "#440088","#0000FF")) + 
     ggtitle("Income vs. Age, colored by Sentiment")
 
@@ -35,7 +38,7 @@ This seems to suggest that polarity increases according to age because there are
 
 ```{r, fig.width = 12, warning=FALSE}
 
-correlation <- cor(sample$income, sample$polarity, use = "na.or.complete") ** 2
+correlation <- cor(sample$income, sample$age, use = "na.or.complete") ** 2
 
 mytext <- paste("Age vs. Income with", "r^2 = ", correlation, ", colored by polarity")
 
