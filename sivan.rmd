@@ -1,4 +1,4 @@
-## 1. Import the dataset and load it how I want
+## 1. Import the dataset and get the subset for people 21 or under.
 
 ```{r, cache = T}
 profiles <- read.csv("profiles.csv")
@@ -8,12 +8,7 @@ profiles <- read.csv("profiles.csv")
 # http://stackoverflow.com/questions/7748149/apply-strsplit-to-specific-column-in-a-data-frame
 profiles$sign <- sub("\\ .+$", "", profiles$sign)
 
-wanted_profiles <- profiles[which(profiles$sign == "leo" |
-              profiles$sign == "aquarius" | 
-              profiles$sign == "gemini"), ]
-
-# check if there is any difference between these signs
-chisq.test(table(profiles$sign))
+wanted_profiles <- subset(profiles, age <= 21)
 ```
 
 
@@ -51,9 +46,9 @@ This seems to suggest that polarity increases according to age because there are
 
 ```{r, fig.width = 12, warning=FALSE}
 
-correlation <- cor(sample$age, sample$polarity, use = "na.or.complete")
+correlation <- cor(sample$age, sample$polarity, use = "na.or.complete") ** 2
 
-mytext <- paste("Age vs. Polarity with", "r = ", correlation, ", colored by sign")
+mytext <- paste("Age vs. Polarity with", "r^2 = ", correlation, ", colored by sign")
 
 ggplot(sample) + 
     aes(x = age, y = polarity) + 
