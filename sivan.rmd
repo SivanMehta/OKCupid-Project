@@ -8,22 +8,11 @@ profiles <- read.csv("profiles.csv")
 # http://stackoverflow.com/questions/7748149/apply-strsplit-to-specific-column-in-a-data-frame
 profiles$sign <- sub("\\ .+$", "", profiles$sign)
 
-wanted_profiles <- subset(profiles, age <= 21)
+wanted_profiles <- subset(profiles, age <= 30)
 ```
 
 
-## 2. Look at some basic variables
-
-```{r, message=FALSE, warning=FALSE, fig.width = 12}
-library(ggplot2)
-
-ggplot(wanted_profiles) + 
-    aes(x = body_type, fill = sign) +
-    geom_bar(position = position_dodge()) +
-    ggtitle("Body type count by sign")
-```
-
-## 3. Sentiment Analysis
+## 2. Sentiment Analysis
 
 ```{r, warning=FALSE, message = FALSE, fig.width = 12}
 library(qdap)
@@ -46,13 +35,14 @@ This seems to suggest that polarity increases according to age because there are
 
 ```{r, fig.width = 12, warning=FALSE}
 
-correlation <- cor(sample$age, sample$polarity, use = "na.or.complete") ** 2
+correlation <- cor(sample$income, sample$polarity, use = "na.or.complete") ** 2
 
-mytext <- paste("Age vs. Polarity with", "r^2 = ", correlation, ", colored by sign")
+mytext <- paste("Age vs. Income with", "r^2 = ", correlation, ", colored by polarity")
 
-ggplot(sample) + 
-    aes(x = age, y = polarity) + 
-    geom_point(aes(colour = sign)) + 
+ggplot(subset(sample, income < 250000 & income > 0)) + 
+    aes(x = income, y = age) + 
+    geom_point(aes(colour = polarity)) + 
+    scale_colour_gradientn(colours=c("#FF0000", "#ffffff", "#440088","#0000FF")) + 
     geom_smooth(method = "lm") + 
     ggtitle(mytext)
 ```
