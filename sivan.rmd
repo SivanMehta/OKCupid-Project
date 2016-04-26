@@ -7,21 +7,40 @@ profiles <- read.csv("profiles.csv")
 # from:
 # http://stackoverflow.com/questions/7748149/apply-strsplit-to-specific-column-in-a-data-frame
 profiles$sign <- sub("\\ .+$", "", profiles$sign)
+sub("* ", "", profiles$sign, fixed = FALSE)
 
-wanted_profiles <- profiles[which(profile$sign == "leo" |
+wanted_profiles <- profiles[which(profiles$sign == "leo" |
               profiles$sign == "aquarius" | 
               profiles$sign == "gemini"), ]
+
+# check if there is any difference between these signs
+chisq.test(table(profiles$sign))
 ```
 
 
 ## 2. Look at some basic variables
 
-```{r, message=FALSE, warning=FALSE}
+```{r, message=FALSE, warning=FALSE, fig.width = 12}
 library(ggplot2)
 
 ggplot(wanted_profiles) + 
-    aes(x = body_type) +
-    geom_bar() + 
-    facet_grid(~sign)
+    aes(x = body_type, fill = sign) +
+    geom_bar(position = position_dodge()) +
+    ggtitle("Body type count by sign")
+```
+
+## 3. Sentiment Analysis
+
+```{r, warning=FALSE, message = FALSE, cache=TRUE}
+library(qdap)
+
+sample <- wanted_profiles[sample(nrow(wanted_profiles), 1000), ]
+
+sample$polarity <- polarity(sample$essay0)$all$polarity
+
+ggplot(sample) +
+    aes(x = polarity, colour = sign) +
+    geom_density() + 
+    ggtitle("Sentiment of Essay #1, depending on sign")
 ```
 
