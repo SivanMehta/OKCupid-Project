@@ -46,5 +46,6 @@ ggplot(profiles) +
                    y = drinks, 
                    size = polarity  * 1.5, 
                    colour = polarity)) +
-    labs(x = "Number of Alcoholic Words", y = "Drinking Behavior")
+    labs(x = "Number of Alcoholic Words", y = "Drinking Behavior") +
+    ggtitle("Number of Alcoholhic Words in Essays vs. Drinking Behavior")
 ```
