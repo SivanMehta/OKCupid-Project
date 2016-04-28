@@ -52,7 +52,17 @@ body <- dashboardBody(
         )
     ),
     tabItem(tabName = "Joyce",
-            h1("Joyce")
+            mainPanel(
+                tabsetPanel(
+                    tabPanel("Lifestyle vs. Age",
+                             selectInput('x', 'X Variable', c("drinks", "diet", "body_type", "smokes")),
+                             plotOutput(outputId = "eda_age", height = "450px", width = "600px")
+                    ),
+                    tabPanel("Traits Offered vs. Traits Demanded",
+                             selectInput('color', 'Color According To', c("age", "drinks", "diet", "body_type", "smokes")),
+                             plotOutput(outputId = "offer_vs_demand", height = "450px", width = "600px"))
+                )
+            )
     ),
     tabItem(tabName = "Suvrath",
             plotOutput(outputId = "map", height = "300px"),

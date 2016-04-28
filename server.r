@@ -18,4 +18,7 @@ shinyServer(function(input, output) {
     
     source("suvrath.r")
     render_suvraths_graphs(input, output, profiles)
+    
+    source("joyce.R")
+    render_joyces_graphs(input, output, profiles)
 })
