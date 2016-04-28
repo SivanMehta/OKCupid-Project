@@ -3,6 +3,10 @@ library(dplyr)
 library(qdap)
 
 # load dataset
+if(!file.exists("profiles.csv"))
+{
+    stop("profiles.csv does not exist, please unzip profiles.csv.zip")
+}
 profiles <- read.csv("profiles.csv")
 print("Loaded profiles.csv")
 
