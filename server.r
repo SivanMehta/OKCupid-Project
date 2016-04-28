@@ -10,15 +10,15 @@ profiles <- read.csv("sample.csv")
 
 shinyServer(function(input, output) {
     
-    source("sivan.r")
+    source("graphing/sivan.r")
     render_sivans_graphs(output, profiles)
     
-    source("patrick.r")
+    source("graphing/patrick.r")
     render_patricks_graphs(input, output, profiles)
     
-    source("suvrath.r")
+    source("graphing/suvrath.r")
     render_suvraths_graphs(input, output, profiles)
     
-    source("joyce.R")
+    source("graphing/joyce.R")
     render_joyces_graphs(input, output, profiles)
 })
