@@ -1,6 +1,13 @@
 library(ggplot2)
 library(plotly)
 
+# load in data
+if(!file.exists("sample.csv"))
+{
+    source("preprocess.r")
+}
+profiles <- read.csv("sample.csv")
+
 shinyServer(function(input, output) {
     
     # Sivan's graphs
