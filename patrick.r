@@ -1,5 +1,7 @@
 library(ggplot2)
 library(plotly)
+library(tm)
+library(wordcloud)
 
 plotTwoCategorical = function(var1, var2, df)
 {
@@ -35,11 +37,40 @@ plotTwoCategorical = function(var1, var2, df)
     plot1
 }
 
+getTraitsCloud = function(dataset)
+{
+    corpus = Corpus(VectorSource(dataset$essay9))
+    plaintext = tm_map(corpus, PlainTextDocument)
+    crude_plain <- tm_map(plaintext, removePunctuation)
+    crude_plain <- tm_map(crude_plain, removeWords, 
+                          c(stopwords('SMART'),"your","like","wanna","message"))
+    crude_plain <- tm_map(crude_plain, stemDocument)
+    wordcloud(crude_plain, max.words = 100, random.order = FALSE)
+}
+
 render_patricks_graphs <- function(input, output, profiles)
 {
     output$plotTwoCategorical <- renderPlot({
         print(profiles[[input$var1]][1])
         print(input$var2)
         plotTwoCategorical(input$var1,input$var2, profiles)
+    })
+    
+    output$wordCloud.fit <- renderPlot({
+        getTraitsCloud(profiles[which(profiles$body_type == "fit"),])
+    })
+    
+    output$wordCloud.extra <- renderPlot({
+        getTraitsCloud(profiles[which(profiles$body_type == "a little extra"),])
+        
+    })
+    
+    output$wordCloud.jacked <- renderPlot({
+        getTraitsCloud(profiles[which(profiles$body_type == "jacked"),])
+        
+    })
+    
+    output$wordCloud.extra <- renderPlot({
+        getTraitsCloud(profiles[which(profiles$body_type == "athletic"),])
     })
 }

@@ -16,29 +16,48 @@ body <- dashboardBody(
                 plotOutput(outputId = "wc_vs_sentiment", height = "300px"),
                 plotOutput(outputId = "age_income_sentiment", height = "300px"),
                 plotOutput(outputId = "drinks_vs_words", height = "300px")
-                
         ),
         tabItem(tabName = "Patrick",
-                selectInput(inputId = "var1",
-                            label = "Variable 1 (appears on x-axis):",
-                            choices = c("drinks","smokes","sex","status","body_type","diet"),
-                            selected = "body_type"),
-                
-                selectInput(inputId = "var2",
-                            label = "Variable 2 (appears on y-axis):",
-                            choices = c("drinks","smokes","sex","status","body_type","diet"),
-                            selected = "drinks"),
-                
-                plotOutput(outputId = "plotTwoCategorical", height = "300px")
-        ),
-        tabItem(tabName = "Joyce",
-                h1("Joyce")
-        ),
-        tabItem(tabName = "Suvrath",
-                h1("Suvrath")        
+                mainPanel(
+                    tabsetPanel(
+                        tabPanel("Two Categorical Plot",
+                            selectInput(inputId = "var1",
+                                        label = "Variable 1 (appears on x-axis):",
+                                        choices = c("drinks","smokes","sex","status","body_type","diet"),
+                                        selected = "body_type"),
+                            
+                            selectInput(inputId = "var2",
+                                        label = "Variable 2 (appears on y-axis):",
+                                        choices = c("drinks","smokes","sex","status","body_type","diet"),
+                                        selected = "drinks"),
+                            
+                            plotOutput(outputId = "plotTwoCategorical", height = "300px")
+                        ),
+                        tabPanel("Fit",
+                                 plotOutput(outputId = "wordCloud.fit", height = "600px")
+                        ),
+                        
+                        tabPanel("A little extra",
+                                 plotOutput(outputId = "wordCloud.extra", height = "600px")
+                        ),
+                        
+                        tabPanel("Jacked",
+                                 plotOutput(outputId = "wordCloud.jacked", height = "600px")
+                        ),
+                        
+                        tabPanel("Athletic",
+                                 plotOutput(outputId = "wordCloud.athletic", height = "600px")
+                        )
+                    )
         )
+    ),
+    tabItem(tabName = "Joyce",
+            h1("Joyce")
+    ),
+    tabItem(tabName = "Suvrath",
+            h1("Suvrath")        
     )
-)
+))
 
 # Put them together into a dashboardPage
 dashboardPage(
