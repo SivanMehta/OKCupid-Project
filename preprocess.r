@@ -36,5 +36,15 @@ profiles$wc <-  sapply(strsplit(as.character(profiles$essay0), " "), length)
 sample <- profiles[sample(nrow(profiles), 2000), ]
 sample$polarity <- polarity(sample$essay0)$all$polarity
 
+# change categorical variables to characters
+profiles$body_type = as.character(profiles$body_type)
+profiles$drinks = as.character(profiles$drinks)
+profiles$diet = as.character(profiles$diet)
+profiles$smokes = as.character(profiles$smokes)
+profiles$status = as.character(profiles$status)
+profiles$status = as.character(profiles$status)
+profiles$sex = as.character(profiles$sex)
+
 # write sample
 write.csv(sample, "sample.csv")
+print("done preprocessing data!")

@@ -12,4 +12,7 @@ shinyServer(function(input, output) {
     
     source("sivan.r")
     render_sivans_graphs(output, profiles)
+    
+    source("patrick.r")
+    render_patricks_graphs(output, profiles)
 })
