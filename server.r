@@ -3,6 +3,8 @@ library(plotly)
 
 shinyServer(function(input, output) {
     
+    # Sivan's graphs
+    
     output$wc_vs_sentiment <- renderPlot({
         
         ggplot(profiles) + 
