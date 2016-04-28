@@ -3,6 +3,7 @@
 .RData
 *.html
 profiles.csv
+profiles.csv.zip
 sample.csv
 .DS_Store
 *_cache/
