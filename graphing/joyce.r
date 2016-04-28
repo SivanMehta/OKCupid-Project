@@ -11,7 +11,7 @@ render_joyces_graphs <- function(input, output, profiles)
     })
     
     output$offer_vs_demand <- renderPlot({
-        ggplot(data = profiles, aes(x = n_traits, y = n_demands)) +
+        ggplot(data = subset(profiles, n_traits < 100 & n_demands < 40), aes(x = n_traits, y = n_demands)) +
             geom_point(aes_string(col = input$color)) +
             ggtitle("Offer vs Demand")
     })
