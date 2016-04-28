@@ -59,7 +59,7 @@ body <- dashboardBody(
             selectInput(inputId = "map_option",
                         label = h3("Select Variable"),
                         choices = list("Smokes", "Drugs")),
-            plotOutput(outputId = "mosaicplot", height = "300px")       
+            plotOutput(outputId = "mosaicplot", height = "300px")
     )
 ))
 

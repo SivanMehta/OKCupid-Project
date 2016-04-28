@@ -15,10 +15,15 @@ render_suvraths_graphs <- function(input, output, profiles)
                            data = profiles)
         }
         if(input$map_option == "Drugs"){
-            plot1 <-  ggmap(map) + ggtitle("OKCupid Users in Calfornia Under 30") +
+            plot1 <-  ggmap(map) + ggtitle("OKCupid Users in the Bay Area Under 30") +
                 geom_point(aes(x = lon, y = lat, size = number_of_people, color = drugs), 
                            data = profiles)
         }
         plot1
+    })
+    
+    output$mosaicplot <- renderPlot({
+        tab <- table(profiles$drugs, profiles$smokes)
+        mosaicplot(tab, xlab = "Drugs", ylab = "Smokes", main = "Mosaic Plot of Drugs vs. Smokes Under 30", shade = T, las = 1)
     })
 }
