@@ -2,7 +2,8 @@
 .Rhistory
 .RData
 *.html
-*.csv
+profiles.csv
+sample.csv
 .DS_Store
 *_cache/
 *_files/
