@@ -14,5 +14,5 @@ shinyServer(function(input, output) {
     render_sivans_graphs(output, profiles)
     
     source("patrick.r")
-    render_patricks_graphs(output, profiles)
+    render_patricks_graphs(input, output, profiles)
 })

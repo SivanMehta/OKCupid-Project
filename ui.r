@@ -19,7 +19,17 @@ body <- dashboardBody(
                 
         ),
         tabItem(tabName = "Patrick",
-                h1("Patrick")
+                selectInput(inputId = "var1",
+                            label = "Variable 1 (appears on x-axis):",
+                            choices = c("drinks","smokes","sex","status","body_type","diet"),
+                            selected = "body_type"),
+                
+                selectInput(inputId = "var2",
+                            label = "Variable 2 (appears on y-axis):",
+                            choices = c("drinks","smokes","sex","status","body_type","diet"),
+                            selected = "drinks"),
+                
+                plotOutput(outputId = "plotTwoCategorical", height = "300px")
         ),
         tabItem(tabName = "Joyce",
                 h1("Joyce")
@@ -32,7 +42,7 @@ body <- dashboardBody(
 
 # Put them together into a dashboardPage
 dashboardPage(
-    dashboardHeader(title = "36-315: The Clusters in our Stars"),
+    dashboardHeader(title = "Final Project"),
     sidebar,
     body
 )
