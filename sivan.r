@@ -1,4 +1,4 @@
-render_sivans_graphs <- function(output)
+render_sivans_graphs <- function(output, profiles)
 {
 
     output$wc_vs_sentiment <- renderPlot({

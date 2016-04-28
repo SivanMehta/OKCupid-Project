@@ -11,5 +11,5 @@ profiles <- read.csv("sample.csv")
 shinyServer(function(input, output) {
     
     source("sivan.r")
-    render_sivans_graphs(output)
+    render_sivans_graphs(output, profiles)
 })
