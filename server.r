@@ -1,55 +1,27 @@
 library(ggplot2)
+library(plotly)
 
 shinyServer(function(input, output) {
     
-    output$hist_plot <- renderPlot({
+    output$wc_vs_sentiment <- renderPlot({
         
-        plot1 <- ggplot(data = faithful) +
-            aes(x = eruptions) +
-            geom_histogram(aes(y = ..density..)) +
-            ggtitle("Histogram of Eruption Times")
+        ggplot(profiles) + 
+            geom_point(aes(x = polarity, y = wc)) + 
+            ggtitle("Word Count vs. Sentiment")
         
-        if (input$individual_obs)
-        {
-            plot1 <- plot1 + geom_rug()
-        }
-        
-        if (input$density)
-        {
-            plo1t <- plot1 + geom_density()
-        }
-        
-        plot1
     })
     
-    output$scatter_plot <- renderPlot({
+    output$age_income_sentiment <- renderPlot({
        
-        ## Scatter Plot of Eruption vs. Waiting
+        correlation <- cor(profiles$income, profiles$age, use = "na.or.complete") ** 2
         
-        plot2 <- ggplot(data = faithful) +
-            aes(x = eruptions, y = waiting) + 
-            geom_point() + 
-            ggtitle("Scatterplot of Eruptions vs. Waiting")
+        mytext <- paste("Age vs. Income with", "r^2 = ", correlation, ", colored by polarity")
         
-        if(input$smooth_line)
-        {
-            plot2 <- plot2 + geom_smooth()
-        }
-        
-        plot2
-    })
-    
-    output$density_plot <- renderPlot({
-        plot3 <- ggplot(data = faithful) +
-            aes(x = eruptions, y = waiting) +
-            geom_density2d() +
-            ggtitle("Contour map of Eruptions vs. Waiting")
-        
-        if(input$add_points)
-        {
-            plot3 <- plot3 + geom_point()
-        }
-        
-        plot3
+        ggplot(subset(profiles, income < 250000 & income > 0)) + 
+            aes(x = age, y = income) + 
+            geom_point(aes(colour = polarity)) + 
+            scale_colour_gradientn(colours=c("#FF0000", "#ffffff", "#440088","#0000FF")) + 
+            geom_smooth(method = "lm") + 
+            ggtitle(mytext)
     })
 })

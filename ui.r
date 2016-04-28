@@ -3,54 +3,34 @@ library(shiny)
 
  # sidebar
 sidebar <- dashboardSidebar( sidebarMenu(
-        menuItem("Problem 1a", tabName = "Problem_1a", icon = icon("chevron-right")),
-        menuItem("Problem 1b", tabName = "Problem_1b", icon=icon("chevron-right"))
+        menuItem("Sivan",   tabName = "Sivan",   icon = icon("chevron-right")),
+        menuItem("Patrick", tabName = "Patrick", icon = icon("chevron-right")),
+        menuItem("Joyce",   tabName = "Joyce",   icon = icon("chevron-right")),
+        menuItem("Suvrath", tabName = "Suvrath", icon = icon("chevron-right"))
     )
 )
 
 body <- dashboardBody(
     tabItems(
-        tabItem(tabName = "Problem_1a",
-                selectInput(inputId = "n_breaks",
-                            label = "Number of bins in histogram (approximate):",
-                            choices = c(10, 20, 35, 50),
-                            selected = 20),
-                
-                checkboxInput(inputId = "individual_obs",
-                              label = strong("Show individual observations"),
-                              value = FALSE),
-                
-                checkboxInput(inputId = "density",
-                              label = strong("Show density estimate"),
-                              value = FALSE),
-                
-                plotOutput(outputId = "hist_plot", height = "300px")
+        tabItem(tabName = "Sivan",
+                plotOutput(outputId = "wc_vs_sentiment", height = "300px"),
+                plotOutput(outputId = "age_income_sentiment", height = "300px")
         ),
-        
-        tabItem(tabName = "Problem_1b",
-                
-                mainPanel( tabsetPanel(
-                    tabPanel("Graph 1",
-                        checkboxInput(inputId = "smooth_line",
-                                      label = "Smoothing Line?",
-                                      value = FALSE),
-                        plotOutput(outputId = "scatter_plot", height = "300px")
-                    ),
-                    tabPanel("Graph 2",
-                        checkboxInput(inputId = "add_points", 
-                                      label = "Add Points?", 
-                                      value = FALSE),
-                        plotOutput(outputId = "density_plot", 
-                                   height = "300px")
-                    )
-                ))
+        tabItem(tabName = "Patrick",
+                h1("Patrick")
+        ),
+        tabItem(tabName = "Joyce",
+                h1("Joyce")
+        ),
+        tabItem(tabName = "Suvrath",
+                h1("Suvrath")        
         )
     )
 )
 
 # Put them together into a dashboardPage
 dashboardPage(
-    dashboardHeader(title = "Lab 13"),
+    dashboardHeader(title = "36-315: The Clusters in our Stars"),
     sidebar,
     body
 )
