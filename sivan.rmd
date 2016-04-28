@@ -1,52 +1,50 @@
-## 1. Import the dataset and get the subset for people 21 or under.
+## 1. Import the preprocessed dataset
 
 ```{r, cache = T}
-profiles <- read.csv("profiles.csv")
+if(!file.exists("sample.csv"))
+{
+    source("preprocess.r")
+}
+profiles <- read.csv("sample.csv")
 
-# get rid of degree of caring
-# from:
-# http://stackoverflow.com/questions/7748149/apply-strsplit-to-specific-column-in-a-data-frame
-profiles$sign <- sub("\\ .+$", "", profiles$sign)
-
-wanted_profiles <- subset(profiles, age <= 30)
+#wanted_profiles <- subset(profiles, age <= 30)
 ```
 
 
 ## 2. Sentiment Analysis
 
 ```{r, warning=FALSE, message = FALSE, fig.width = 12}
-library(qdap)
-library(plotly)
+library(ggplot2)
 
-# take random sample because it takes ~5 minutes to analyze the polarity
-# of a dataset this size
-sample <- wanted_profiles[sample(nrow(wanted_profiles), 1000), ]
-sample$polarity <- polarity(sample$essay0)$all$polarity
-
-## get word counts
-sample$wc <-  sapply(strsplit(as.character(sample$essay0), " "), length)
-
-ggplot(subset(sample, income < 250000)) +
-    geom_point(aes(x = polarity, y = wc)) + 
-    scale_colour_gradientn(colours=c("#FF0000", "#ffffff", "#440088","#0000FF")) + 
-    ggtitle("Income vs. Age, colored by Sentiment")
-
-ggplotly()
+ggplot(profiles) +
+    aes(x = polarity, y = wc) + 
+    geom_point() + 
+    ggtitle("Word Count vs. Sentiment")
 ```
 
-This seems to suggest that polarity increases according to age because there are more blue points on the right side of the graph, this can be **very** loosely corroborated by the following scatter plot of polarity vs. age. As you can see by the coloring, there is no real correlation between sign and either of these variables.
+Clearly there are exponential growth curve lines with multiple levels, but we currently have no idea what these groups correspond to. For interactive parts, we can just have them color by multiple variables, trying to ascertain if there is any underlying group structure.
 
 ```{r, fig.width = 12, warning=FALSE}
-
-correlation <- cor(sample$income, sample$age, use = "na.or.complete") ** 2
+correlation <- cor(profiles$income, profiles$age, use = "na.or.complete") ** 2
 
 mytext <- paste("Age vs. Income with", "r^2 = ", correlation, ", colored by polarity")
 
-ggplot(subset(sample, income < 250000 & income > 0)) + 
-    aes(x = income, y = age) + 
+ggplot(subset(profiles, income < 250000 & income > 0)) + 
+    aes(x = age, y = income) + 
     geom_point(aes(colour = polarity)) + 
     scale_colour_gradientn(colours=c("#FF0000", "#ffffff", "#440088","#0000FF")) + 
     geom_smooth(method = "lm") + 
     ggtitle(mytext)
 ```
 
+# 3. Word Frequency Analysis
+
+```{r}
+# adapted from http://www.amstat.org/publications/jse/v23n2/kim.pdf
+ggplot(profiles) +
+    geom_point(aes(x = alcohol, 
+                   y = drinks, 
+                   size = polarity  * 1.5, 
+                   colour = polarity)) +
+    labs(x = "Number of Alcoholic Words", y = "Drinking Behavior")
+```
