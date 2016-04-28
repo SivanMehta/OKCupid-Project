@@ -3,7 +3,7 @@ render_sivans_graphs <- function(output, profiles)
 
     output$wc_vs_sentiment <- renderPlot({
         
-        ggplot(profiles) + 
+        ggplot(subset(profiles, polarity < 2 & wc < 500)) + 
             geom_point(aes(x = polarity, y = wc)) + 
             ggtitle("Word Count vs. Sentiment")
         
