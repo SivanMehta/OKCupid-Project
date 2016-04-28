@@ -32,18 +32,24 @@ profiles$drink      <- str_count(essays, "drink")
 profiles$alcohol    <- profiles$wine_count + profiles$beer_count + profiles$drink
 profiles$wc <-  sapply(strsplit(as.character(profiles$essay0), " "), length)
 
-# calculate polarities
-sample <- profiles[sample(nrow(profiles), 2000), ]
-sample$polarity <- polarity(sample$essay0)$all$polarity
-
 # change categorical variables to characters
 profiles$body_type = as.character(profiles$body_type)
 profiles$drinks = as.character(profiles$drinks)
 profiles$diet = as.character(profiles$diet)
+profiles$drugs <- as.character(profiles$drugs)
 profiles$smokes = as.character(profiles$smokes)
 profiles$status = as.character(profiles$status)
 profiles$status = as.character(profiles$status)
 profiles$sex = as.character(profiles$sex)
+profiles <- subset(profiles, drugs != "" & smokes != "")
+
+# calculate polarities
+sample <- profiles[sample(nrow(profiles), 2000), ]
+sample$polarity <- polarity(sample$essay0)$all$polarity
+
+# merge in locations
+locations_under_30 <- read.csv("locations_under_30.csv")
+sample <- merge(sample, locations_under_30, "location")
 
 # write sample
 write.csv(sample, "sample.csv")

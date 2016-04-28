@@ -1,0 +1,117 @@
+location,number_of_people,lon,lat
+"alameda, california",378,-122.2416,37.76521
+"albany, california",78,-122.2977,37.88687
+"ashland, california",1,-122.1139,37.69465
+"atherton, california",31,-122.1977,37.46133
+"bayshore, california",2,-122.4018,37.70768
+"belmont, california",121,-122.2758,37.52021
+"belvedere tiburon, california",20,-122.4637,37.87748
+"benicia, california",98,-122.1586,38.04937
+"berkeley, california",2380,-122.2727,37.87159
+"bolinas, california",2,-122.6864,37.90937
+"brisbane, california",17,-122.4,37.68077
+"burlingame, california",159,-122.3481,37.57787
+"campbell, california",1,-121.95,37.28717
+"canyon country, california",1,-118.472,34.42333
+"canyon, california",1,-122.1659,37.83067
+"castro valley, california",183,-122.0864,37.6941
+"chico, california",1,-121.8375,39.72849
+"colma, california",2,-122.4597,37.67688
+"concord, california",1,-122.0311,37.97798
+"corte madera, california",15,-122.5275,37.92548
+"costa mesa, california",1,-117.9187,33.64113
+"crockett, california",18,-122.213,38.05242
+"daly city, california",415,-122.4702,37.68792
+"east palo alto, california",9,-122.1411,37.46883
+"el cerrito, california",132,-122.3108,37.91613
+"el granada, california",12,-122.4694,37.50272
+"el sobrante, california",65,-122.2952,37.97715
+"emeryville, california",333,-122.2852,37.83132
+"fairfax, california",30,-122.5889,37.98715
+"foster city, california",11,-122.2711,37.55855
+"fremont, california",45,-121.9886,37.54827
+"granite bay, california",1,-121.1638,38.76323
+"green brae, california",25,-122.5253,37.94763
+"half moon bay, california",37,-122.4286,37.46355
+"hayward, california",414,-122.0808,37.66882
+"hercules, california",66,-122.2886,38.01714
+"hillsborough, california",2,-122.3794,37.5741
+"irvine, california",1,-117.7947,33.68395
+"isla vista, california",1,-119.861,34.41333
+"kentfield, california",1,-122.5572,37.95215
+"lafayette, california",73,-122.118,37.88576
+"lagunitas, california",4,-122.7022,38.01131
+"larkspur, california",14,-122.5353,37.93409
+"long beach, california",1,-118.1937,33.77005
+"los angeles, california",7,-118.2437,34.05223
+"los gatos, california",2,-121.9624,37.23581
+"magalia, california",1,-121.5783,39.81211
+"marin city, california",1,-122.5091,37.86854
+"martinez, california",157,-122.1341,38.01937
+"menlo park, california",209,-122.1817,37.45296
+"mill valley, california",74,-122.545,37.90604
+"millbrae, california",87,-122.3872,37.59855
+"milpitas, california",1,-121.8996,37.43233
+"modesto, california",1,-120.9969,37.6391
+"montara, california",4,-122.5161,37.54216
+"moraga, california",51,-122.1297,37.83493
+"moss beach, california",4,-122.5133,37.52744
+"mountain view, california",214,-122.0839,37.38605
+"napa, california",1,-122.2869,38.29754
+"nevada city, california",1,-121.0161,39.26156
+"nicasio, california",1,-122.6991,38.06171
+"north hollywood, california",1,-118.3813,34.18704
+"novato, california",152,-122.5697,38.10742
+"oakland, california",2996,-122.2711,37.80436
+"oakley, california",1,-121.7125,37.99742
+"oceanview, california",1,-122.4566,37.71418
+"olema, california",1,-122.788,38.04076
+"orange, california",1,-117.8531,33.78779
+"orinda, california",46,-122.1797,37.87715
+"pacheco, california",1,-122.0752,37.98353
+"pacifica, california",123,-122.4869,37.61383
+"palo alto, california",587,-122.143,37.44188
+"pasadena, california",1,-118.1445,34.14778
+"piedmont, california",3,-122.2316,37.82437
+"pinole, california",55,-122.2989,38.00437
+"pleasant hill, california",165,-122.0608,37.94798
+"point richmond, california",3,-122.389,37.9237
+"redwood city, california",301,-122.2364,37.48522
+"richmond, california",200,-122.3477,37.93576
+"riverside, california",1,-117.3962,33.95335
+"rodeo, california",27,-122.2669,38.03298
+"rohnert park, california",1,-122.7011,38.33964
+"ross, california",1,-122.555,37.96242
+"sacramento, california",1,-121.4944,38.58157
+"san anselmo, california",48,-122.5616,37.97465
+"san bruno, california",143,-122.4111,37.63049
+"san carlos, california",87,-122.2605,37.50716
+"san diego, california",2,-117.1611,32.71574
+"san francisco, california",15073,-122.4194,37.77493
+"san geronimo, california",4,-122.6639,38.01326
+"san jose, california",1,-121.8863,37.33821
+"san leandro, california",328,-122.1561,37.72493
+"san lorenzo, california",85,-122.1244,37.68104
+"san luis obispo, california",1,-120.6596,35.28275
+"san mateo, california",579,-122.3255,37.56299
+"san pablo, california",152,-122.3455,37.96215
+"san rafael, california",272,-122.5311,37.97353
+"santa ana, california",1,-117.8678,33.74557
+"santa clara, california",1,-121.9552,37.35411
+"santa cruz, california",4,-122.0308,36.97412
+"santa monica, california",1,-118.4912,34.01945
+"santa rosa, california",2,-122.7141,38.44043
+"sausalito, california",40,-122.4853,37.85909
+"south san francisco, california",227,-122.4077,37.65466
+"stanford, california",285,-122.1661,37.42411
+"stinson beach, california",1,-122.6444,37.90048
+"sunnyvale, california",1,-122.0363,37.36883
+"tiburon, california",3,-122.4566,37.87354
+"vacaville, california",1,-121.9877,38.35658
+"vallejo, california",328,-122.2566,38.10409
+"walnut creek, california",305,-122.0652,37.91008
+"waterford, california",1,-120.7605,37.64132
+"west oakland, california",3,-122.2909,37.81391
+"westlake, california",9,-118.2731,34.05804
+"woodacre, california",4,-122.6453,38.0127
+"woodside, california",6,-122.2539,37.42994
