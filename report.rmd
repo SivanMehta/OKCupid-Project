@@ -85,11 +85,72 @@ base + aes(x = age)
 base + aes(x = income)
 ```
 
-# Two Categorical Plots
+# Plot Two Categorical
+
+```{r, fig.height=6, fig.width=12}
+
+plotTwoCategorical = function(var1, var2, df=profiles){
+  var1.c = c()
+  var2.c= c()
+  
+  # data frame creation
+  var1.list = unique(df[[var1]])
+  var2.list = unique(df[[var2]])
+  for(i in unique(df[[var1]])){
+    var1.c = c(var1.c, rep(i,length(unique(df[[var2]]))))
+  }
+  var2.c = rep(var2.list,length(var1.list))
+  temp.df = as.data.frame(as.character(var1.c))
+  colnames(temp.df) = "var.1"
+  temp.df$var.2 = as.character(var2.c)
+  temp.df$var.1 = as.character(temp.df$var.1)
+  temp.df$count = rep(0, nrow(temp.df))
+  temp.df$freq = rep(0,nrow(temp.df))
+  for(i in 1:nrow(temp.df)){
+    temp.df$count[i] = nrow(subset(df, df[[var1]] == temp.df$var.1[i] & 
+                                     df[[var2]] == temp.df$var.2[i]))
+  }
+  for(i in 1:nrow(temp.df)){
+    temp.df$freq[i] = temp.df$count[i] / sum(temp.df$count[which(temp.df$var.1 == temp.df$var.1[i])]) 
+  }
+  
+  plot1 = ggplot(temp.df) + geom_point(aes(x=var.1,y=var.2, size = freq)) +
+          scale_size(range = c(0, 25)) +
+            ggtitle(paste("Proportion Breakdown of ",gsub("_", " ", var1),
+                          " and ", gsub("_", " ", var2), sep="")) + 
+            labs(x=gsub("_", " ", var1),y=gsub("_", " ", var2))
+  ggplotly()
+}
+
+plotTwoCategorical("body_type","drinks",profiles)
+```
+
+This allows for an easy and early data analysis of different relationships that we may want to examine. For example, looking at drinking habits based on body types yields two interesting relationships: a higher proportion od desperate drinkers are jacked or used up than any other body type. Further, people who consider themselves above average in terms of weight (full figured, a little extra) tend to drink less often (a higher proportion of them report not drinking at all). 
+
+The graph is used as a tool to determine marginal distributions of any two categorical variables in the data. It allows for a simpler comparison along the x-axis, where each variable on the x-axis sums to 1. This is effectively a stacked bar chart for proportions, but since each dot is spaced out equally, we can compare across the y-axis too. This was done by creating a a dataframe of the length of variable1*variable2, then counting the occurances of each intersection. The only manipulation of the data required is to convert all the factor-level data into strings via as.character.
 
 > Created, presented, and described by Patrick Chang
 
 # Word Clouds
+
+```{r}
+
+getTraitsCloud = function(dataset){
+  corpus = Corpus(VectorSource(dataset$essay9))
+  plaintext = tm_map(corpus, PlainTextDocument)
+  crude_plain <- tm_map(plaintext, removePunctuation)
+  crude_plain <- tm_map(crude_plain, removeWords, stopwords('english'))
+  crude_plain <- tm_map(crude_plain, stemDocument)
+  wordcloud(crude_plain, max.words = 100, random.order = FALSE)
+}
+
+
+getTraitsCloud(profiles[which(profiles$body_type == "fit"),])
+```
+
+This looks at a word cloud of what traits fit people desire in their partners (done by parsing essay9). While there are a few words what do not correspond to traits, we see that most fit people in our sample want partners who are honest, fun, humorous, genuine, active, and adventurous. While not very telling by itself, this lends more information by telling us what traits potential partners of each body type are looking for. 
+
+This was created with the wordCloud library. We converted essay9 ("you should message me if") into a plaintext corpus, then parsed it to remove punctuation and some common stopwords. It then returns a word cloud of length 100, as there are multiple words that do not give information, but are not coded as stopwords. There is no manipulation required for generating this graphic. 
 
 > Created, presented, and described by Patrick Chang
 
