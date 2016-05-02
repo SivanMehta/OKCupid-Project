@@ -2,6 +2,7 @@
 .Rhistory
 .RData*
 *.html
+!index.html
 profiles.csv
 profiles.csv.zip
 sample.csv
