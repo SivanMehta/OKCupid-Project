@@ -8,7 +8,7 @@ output:
 
 # Sentiment Analysis
 
-## Graph 1. Word Count vs. Polarity
+### Graph 1. Word Count vs. Sentiment
 
 > Created, presented, and described by Sivan Mehta
 
@@ -47,14 +47,14 @@ We took a subset here simply to leave out what we saw as outliers. This helps "z
 
 In this graph, we see `wc` on the vertical axis and `polarity` on the horizontal axis. The black coloring of the points and the size of the points are all the same and have no actual bearing. An interesting feature that certainly stands out in this graph is the clear groups that form along lines that look like variations of a $y=\frac{ 1 }{ x }$ kind of curve. Upon further analysis, it would be interesting to see if these groups correspond to as they don't correspond to any of the categorical variables provided in the dataset
 
-## Graph 2. Age vs. Income
+### Graph 2. Age vs. Income
 
-```{r}
+```{r, fig.width = 12}
 correlation <- cor(profiles$income, profiles$age, use = "na.or.complete") ** 2
-        
 mytext <- paste("Age vs. Income with", "r^2 = ", correlation, ", colored by sentiment")
+wanted <- subset(profiles, income < 250000 & income > 0)
         
-ggplot(subset(profiles, income < 250000 & income > 0)) + 
+ggplot(wanted) + 
     aes(x = age, y = income) + 
     geom_point(aes(colour = polarity)) + 
     scale_colour_gradientn(colours=c("#FF0000", "#ffffff", "#440088","#0000FF")) + 
@@ -62,4 +62,25 @@ ggplot(subset(profiles, income < 250000 & income > 0)) +
     ggtitle(mytext)
 ```
 
-Some awesome description
+Using the preprocessed `polarity` variable, I then tried to use it to explore the relationship between `age` and `income`. Additionally, I plotted a smoothing line to see if there was an overall trend that could be teased out. While one would presume that older people would be older simply because they have advanced further in their career, this hypothesis can only losely be corroborated.
+
+We can actually check this linear model with the following command:
+
+```{r}
+summary(lm(wanted$age ~ wanted$income))
+```
+
+Because our p-value for the slope is < .05, we reject the null hypothesis that this slope is not zero. However, just looking at the graph demonstrates that this model is incredibly inaccurate because of the large variation in the `income` variable. One limitation of this type of visualization is that while age was reported by year, income was not nearly as granular, offering only 13 distinct levels, with a vast majority not reporting at all, which is why we included `income > 0` in our graphs and analysis.
+
+When including the `polarity` variable by coloring by a continuous color scale, we fail to see any ascertainable trends. There is no indication that sentiment has any relation to the age or the income of the profile. These claims can be corroborated by the following graphs having relatively flat `geom_smooth` geometries, indicating that there is little correlation between `polarity` and either `age` or `income`.
+
+```{r, warning=FALSE, fig.width = 12}
+base <- ggplot(wanted) + # data
+        geom_point() +   # scatterplot
+        geom_smooth() +  # smoothing line
+        aes(y = polarity) # polarity on the y-axis
+
+base + aes(x = age)
+base + aes(x = income)
+```
+
