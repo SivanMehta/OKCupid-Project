@@ -75,9 +75,9 @@ Because our p-value for the slope is < .05, we reject the null hypothesis that t
 When including the `polarity` variable by coloring by a continuous color scale, we fail to see any ascertainable trends. There is no indication that sentiment has any relation to the age or the income of the profile. These claims can be corroborated by the following graphs having relatively flat `geom_smooth` geometries, indicating that there is little correlation between `polarity` and either `age` or `income`.
 
 ```{r, warning=FALSE, fig.width = 12}
-base <- ggplot(wanted) + # data
-        geom_point() +   # scatterplot
-        geom_smooth() +  # smoothing line
+base <- ggplot(wanted) +  # data
+        geom_point() +    # scatterplot
+        geom_smooth() +   # smoothing line
         aes(y = polarity) # polarity on the y-axis
 
 base + aes(x = age)
