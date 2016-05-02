@@ -8,9 +8,10 @@ output:
 
 # Sentiment Analysis
 
+> Created, presented, and described by Sivan Mehta
+
 ### Graph 1. Word Count vs. Sentiment
 
-> Created, presented, and described by Sivan Mehta
 
 ```{r, warning=FALSE, fig.width = 12}
 library(ggplot2)
@@ -84,3 +85,26 @@ base + aes(x = age)
 base + aes(x = income)
 ```
 
+# Two Categorical Plots
+
+> Created, presented, and described by Patrick Chang
+
+# Word Clouds
+
+> Created, presented, and described by Patrick Chang
+
+# Livestyle vs. Age
+
+> Created, presented, and described by Joyce Sun
+
+# Traits Offered vs. Demanded
+
+> Created, presented, and described by Joyce Sun
+
+# Maps
+
+> Created, presented, and described by Suvrath Penmetcha
+
+# Mosaic Plot
+
+> Created, presented, and described by Suvrath Penmetcha
