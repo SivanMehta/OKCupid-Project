@@ -17,11 +17,11 @@ output:
 library(ggplot2)
 
 # load in data
-if(!file.exists("../sample.csv"))
+if(!file.exists("sample.csv"))
 {
-    source("../preprocess.r")
+    source("preprocess.r")
 }
-profiles <- read.csv("../sample.csv")
+profiles <- read.csv("sample.csv")
 
 ggplot(subset(profiles, polarity < 2 & wc < 500)) + 
             geom_point(aes(x = polarity, y = wc)) + 
