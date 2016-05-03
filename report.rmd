@@ -6,16 +6,18 @@ output:
     toc_float:  true
 ---
 
-# Sentiment Analysis
+```{r, warning=FALSE, echo=FALSE, message=FALSE}
+library(ggplot2)
+library(plotly)
+library(tm)
+library(wordcloud)
+```
 
-> Created, presented, and described by Sivan Mehta
+# Sentiment Analysis
 
 ### Graph 1. Word Count vs. Sentiment
 
-
 ```{r, warning=FALSE, fig.width = 12}
-library(ggplot2)
-
 # load in data
 if(!file.exists("sample.csv"))
 {
@@ -84,6 +86,8 @@ base <- ggplot(wanted) +  # data
 base + aes(x = age)
 base + aes(x = income)
 ```
+
+> Created, presented, and described by Sivan Mehta
 
 # Plot Two Categorical
 
