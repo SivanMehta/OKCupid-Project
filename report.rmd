@@ -65,7 +65,7 @@ ggplot(wanted) +
 
 Using the preprocessed `polarity` variable, I then tried to use it to explore the relationship between `age` and `income`. Additionally, I plotted a smoothing line to see if there was an overall trend that could be teased out. While one would presume that older people would be older simply because they have advanced further in their career, this hypothesis can only losely be corroborated.
 
-We can actually check this linear model with the following command:
+We can actually check a linear regression model with the following command:
 
 ```{r}
 summary(lm(wanted$age ~ wanted$income))

@@ -8,4 +8,4 @@ I recommend running `preprocess.r` *before* starting the application for the fir
 
 The directions for the project can be found [here](https://github.com/sventura/36-315_Spring_2016/blob/master/Final%20Project/Final%20Project.Rmd)
 
-The Github pages version of the repo found [here](https://sivanmehta.github.io/OKCupid-Project/) is simply the rendered version of [`report.rmd`])(https://github.com/SivanMehta/OKCupid-Project/blob/gh-pages/report.rmd), which includes fancy Rmarkdown formatting and some cool graphs. 
+The Github pages version of the repo found [here](https://sivanmehta.github.io/OKCupid-Project/) is simply the rendered version of [`report.rmd`](https://github.com/SivanMehta/OKCupid-Project/blob/gh-pages/report.rmd), which includes fancy Rmarkdown formatting and some cool graphs. 
