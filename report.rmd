@@ -160,9 +160,31 @@ This was created with the wordCloud library. We converted essay9 ("you should me
 
 # Livestyle vs. Age
 
+```{r, warning = FALSE, message = FALSE}
+ggplot(data = profiles, aes(x = drinks)) +
+      geom_violin(aes(y = age)) + 
+      ggtitle("Violin Plot of Age vs. Drinking Habits") +
+      theme(axis.text.x = element_text(angle = 90))
+```
+
+From this graphic, we can see that the distribution of age varies depending on drinking habits. Users who drink desperately tend to be young (under 30) or old (over 50), while number of users who drink never, rarely, or socially decrease as age increases.In the Shiny App, the variable on the x-axis can be changed to examine relationships between age and smoking habits, diet, and body type as well.
+
+This graph was created using `ggplot()` for the base, `geom_violin()` for the plot type, and `theme()` to manipulate axis labels. In the Shiny code, the ui script shows drop-down input options for x-variables, with default set to drinks. The server script reads the input chosen by the user using `aes_string()`, and plots the variable on the x-axis. 
+
 > Created, presented, and described by Joyce Sun
 
 # Traits Offered vs. Demanded
+
+```{r, warning = FALSE, message = FALSE}
+ggplot(data = profiles, aes(x = n_traits, y = n_demands)) +
+      geom_point(aes(col = age)) +
+      ggtitle("Traits Offered vs Demanded from Partner") + 
+      xlim(0,100) + ylim(0,40)
+```
+
+This graph shows the number of traits a user looks for in a partner vs the number of traits the user offers about him/herself.The majority of users in our subset offer fewer than 25 traits about themselves but also ask for fewer than 10 traits from a potential match.There are some users who offer or demand more traits, including 5 potential outliers with greater than 100 traits offered or greater than 40 traits demanded, who were removed for better visibility. In the Shiny app, the observations can be colored according to various lifestyle variables: age, drinking habits, smoking habits, diet, and body type. Generally, there do not appear to be significant patters in the distribution of traits offered or demanded depending on the lifestyle variables.
+
+In order to estimate the number of traits offered and demanded from matches, we manipulated the essay data in the original dataset. Number of traits offered is the number of clauses in each user's essay0 ("About me"), cut by periods, commas, and "and"'s. Number of traits demanded is the number of clauses in each user's essay9 ("You should message me if"), cut according to the same criteria as traits offered.The graph was created using `ggplot()` for the base, `geom_point()` for the scatterplot points, and `aes_string()` to identify variable to color by. Finally, we used `xlim()` and `ylim()` to zoom into the scatterplot- this cut out 5 potential outliers, but made the remaining observations much more readable.
 
 > Created, presented, and described by Joyce Sun
 
