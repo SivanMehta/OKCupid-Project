@@ -1,12 +1,16 @@
 ---
-author: "35-315 Group 24"
+title: "36-315 Final Report"
+author: "Sivan Mehta, Patrick Chang, Joyce Sun, Suvrath Penmetcha"
+date:  "Friday, May 6th"
 output: 
   html_document:
     toc:  true
     toc_float:  true
+    code_folding:  hide
 ---
 
 ```{r, warning=FALSE, echo=FALSE, message=FALSE}
+# load in libraries and preprocess information
 library(ggplot2)
 library(plotly)
 library(tm)
@@ -19,6 +23,25 @@ if(!file.exists("sample.csv"))
 }
 profiles <- read.csv("sample.csv")
 ```
+
+# Group 24: The Clusters in our Stars
+
+| Name              | andrewID |
+|-------------------|----------|
+| Sivan Mehta       | skmehta  |
+| Patrick Chang     | pgchang  |
+| Joyce Sun         | joyces   |
+| Suvrath Penmetcha | spenmetc |
+
+# Data and Subgroup Description
+
+Data source:  [...]
+
+Summary of the dataset:  [number of rows/columns, variables available, what does a single row of the dataset correspond to, etc]
+
+We chose the following subgroup:  [Describe your subgroup here.  Describe any data manipulations that were necessary to create your subgroup]
+
+We are interested in exploring the following about our subgroup:  People under 30
 
 # Sentiment Analysis
 
@@ -195,3 +218,11 @@ In order to estimate the number of traits offered and demanded from matches, we 
 # Mosaic Plot
 
 > Created, presented, and described by Suvrath Penmetcha
+
+#  Conclusions
+
+(no more than two paragraphs)
+
+Summarize the main points and takeaways from your work on this project.
+
+Is there anything that you would explore further if you had the time?
