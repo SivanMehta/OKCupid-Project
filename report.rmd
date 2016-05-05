@@ -35,13 +35,13 @@ profiles <- read.csv("sample.csv")
 
 # Data and Subgroup Description
 
-Data source:  [...]
+Data source:  The dataset was collected 59,946 OKCupid users from San Francisco from June 2012. The dataset contains demographic information, lifestyle information, and text responses to 10 essay questions. A single row of the given dataset represents 1 profile of a user who had opted into the survey.
 
-Summary of the dataset:  [number of rows/columns, variables available, what does a single row of the dataset correspond to, etc]
+The demographic information includes location, age, body type, ethnicity, height, gender. The lifestyle and career information includes whether or not you have kids, sexual orientation, religion, smoking habits, diet, occupation, and income. While there were some continiously measured variables (age, height, and income), most were reported as categorical variables with particular aspects. For example: in addition to reporting your religion, you could also report how much this answer really meant to you. One concrete example would be `Buddhism`, and `but not too serious about it`.
 
-We chose the following subgroup:  [Describe your subgroup here.  Describe any data manipulations that were necessary to create your subgroup]
+We chose the following subgroup:  [Describe your subgroup here.  Describe any data manipulations that were necessary to create your subgroup] People under 30. To obtain this subset, we simply used the `subset` functions like this: ` sample <- subset(profiles, age < 30) `
 
-We are interested in exploring the following about our subgroup:  People under 30
+We are interested in exploring the following about our subgroup because it represents the majority of OKCupid users and likely the most active users on the website.
 
 # Sentiment Analysis
 
