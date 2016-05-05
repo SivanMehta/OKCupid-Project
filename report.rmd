@@ -15,6 +15,7 @@ library(ggplot2)
 library(plotly)
 library(tm)
 library(wordcloud)
+library(ggmap)
 
 # load in data
 if(!file.exists("sample.csv"))
@@ -213,9 +214,37 @@ In order to estimate the number of traits offered and demanded from matches, we 
 
 # Maps
 
+```{r, message = FALSE, warning = FALSE}
+locations_under_30 <- read.csv("locations_under_30.csv")
+profiles <- subset(profiles, smokes != "" & drugs != "" & drinks != "")
+under_30 <- subset(profiles, age<30)
+under_30 <- merge(under_30, locations_under_30, "location")
+map <- get_map(location = c(lon = -122.286884, lat = 37.670770), zoom = 10)
+ggmap(map) + 
+    ggtitle("OKCupid Users in Calfornia Under 30") + 
+    geom_point(aes(x = lon, 
+                   y = lat, 
+                   size = number_of_people, 
+                   color = smokes), 
+                data = profiles)
+```
+
+This map displays where the OK-Cupid users are located around San Francisco and also how many users are located in a particular area. We can see there are large number of OK-Cupid users in San Francisco and also in Oakland and Berkeley. Furthermore, we can take a look of categorical variables such as drinking to compare the drinking habits of various Ok-cupid populations across San Francisco. For example, we see that the majority of OK-Cupid users in Daly city rarely drink.
+
+To make this map, I used ggmap and also I subsetted our under 30 population data to look for all the unique locations. Then I created another csv file that contains all the unique locations and their longitude and latitude and the number of people at that location. I used the geocode function to the find the latitude and longitude and I created another CSV file because google maps limits the number of queries you can make.
+
 > Created, presented, and described by Suvrath Penmetcha
 
 # Mosaic Plot
+
+```{r}
+tab <- table(profiles$drugs, profiles$smokes)
+mosaicplot(tab, xlab = "Drugs", ylab = "Smokes", main = "Mosaic Plot of Drugs vs. Smokes Under 21", shade = T, las = 1)
+```
+
+This mosaic plot shows the association between the drug and smoking habits of OK-Cupid users. We can see that since the plot is colored there is an association between people's drug and smoking habits. For example, we can see that users that don't smoke almost never do drugs. Likewise, people who often do drugs also smoke.
+
+To make this mosaic plot I had to use the mosaicplot function in R and also create a table of the two categorical variables of interest such as drug and smoking habits. Also, I had to remove any observations where users didn't provide an answer to their drug and smoking habits.
 
 > Created, presented, and described by Suvrath Penmetcha
 
