@@ -67,7 +67,7 @@ sample <- profiles[sample(nrow(profiles), 2000), ]
 sample$polarity <- polarity(sample$essay0)$all$polarity
 ```
 
-Because the `polarity` function from the [`qdap`](https://cran.r-project.org/web/packages/qdap/index.html) package is relatively slow (this sample of 2000 people took ~5 minutes), we had to take a random sample of 2000 profiles from the dataset. This function simply takes a string and returns the polarity of the text, or simply how positive or negative the sentiment of the text is. Both the preprocessing for `polarity` and `wc` were done in a `preprocess.r` file that was provided in the final project.
+Because the `polarity` function from the [`qdap`](https://cran.r-project.org/web/packages/qdap/index.html) package is relatively slow (this sample of 2000 people took ~5 minutes), we had to take a random sample of 2000 profiles from the dataset. This function simply takes a string and returns the polarity of the text, or simply how positive or negative the sentiment of the text is. Both the preprocessing for `polarity` and `wc` were done in a [`preprocess.r`](https://github.com/SivanMehta/OKCupid-Project/blob/master/preprocess.r) file that was provided in the final project.
 
 We took a subset here simply to leave out what we saw as outliers. This helps "zoom" in the graph to the more interesting pieces, and helps make the group structure easier to see.
 
