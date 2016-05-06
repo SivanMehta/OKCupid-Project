@@ -250,8 +250,8 @@ To make this mosaic plot I had to use the mosaicplot function in R and also crea
 
 #  Conclusions
 
-(no more than two paragraphs)
+In this project, our group focused on utilizing a wide variety of data manipulation and visualization skills, ranging from classic 2-D plots to text analysis to maps. Our analysis of the OK Cupid dataset revealed bivariate trends between drinking habits and body type, smoking habits and drug use, etc. However, we did not uncover any distinct multivariate trends or clusters. 
 
-Summarize the main points and takeaways from your work on this project.
+Given more time, we would examine trends from our graphs more closely, such as the bands in our Word Count vs Sentiment Plot. Where applicable, we could run statistical tests to examine correlation between variables (i.e. whether differences in lifestyle variables depending on age are significant). Overall, much more detailed analysis would be needed to properly examine all facets of this dataset.
 
-Is there anything that you would explore further if you had the time?
+***
