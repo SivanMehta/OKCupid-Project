@@ -6,7 +6,6 @@ output:
   html_document:
     toc:  true
     toc_float:  true
-    code_folding:  hide
 ---
 
 ```{r, warning=FALSE, echo=FALSE, message=FALSE}
@@ -40,7 +39,7 @@ Data source:  The dataset was collected 59,946 OKCupid users from San Francisco 
 
 The demographic information includes location, age, body type, ethnicity, height, gender. The lifestyle and career information includes whether or not you have kids, sexual orientation, religion, smoking habits, diet, occupation, and income. While there were some continiously measured variables (age, height, and income), most were reported as categorical variables with particular aspects. For example: in addition to reporting your religion, you could also report how much this answer really meant to you. One concrete example would be `Buddhism`, and `but not too serious about it`.
 
-We chose the following subgroup:  [Describe your subgroup here.  Describe any data manipulations that were necessary to create your subgroup] People under 30. To obtain this subset, we simply used the `subset` functions like this: ` sample <- subset(profiles, age < 30) `
+We chose the following subgroup: People under 30. To obtain this subset, we simply used the `subset` function like this: ` sample <- subset(profiles, age < 30) `
 
 We are interested in exploring the following about our subgroup because it represents the majority of OKCupid users and likely the most active users on the website.
 
@@ -68,7 +67,7 @@ sample <- profiles[sample(nrow(profiles), 2000), ]
 sample$polarity <- polarity(sample$essay0)$all$polarity
 ```
 
-Because the `polarity` function from the [`qdap`](https://cran.r-project.org/web/packages/qdap/index.html) package takes a long time, we had to take a random sample of 2000 profiles from the dataset. This function simply takes a string and returns the polarity of the text, or simply how positive or negative the sentiment of the text is. Both the preprocessing for `polarity` and `wc` were done in a `preprocess.r` file that was provided in the final project.
+Because the `polarity` function from the [`qdap`](https://cran.r-project.org/web/packages/qdap/index.html) package is relatively slow (this sample of 2000 people took ~5 minutes), we had to take a random sample of 2000 profiles from the dataset. This function simply takes a string and returns the polarity of the text, or simply how positive or negative the sentiment of the text is. Both the preprocessing for `polarity` and `wc` were done in a `preprocess.r` file that was provided in the final project.
 
 We took a subset here simply to leave out what we saw as outliers. This helps "zoom" in the graph to the more interesting pieces, and helps make the group structure easier to see.
 
